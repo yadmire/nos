@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: user-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.106.198.57:8848
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
