@@ -1,0 +1,38 @@
+server:
+  port: 80
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      server-addr: http://139.159.133.183:8848 #huawei yun iaas
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: admin-service_router
+          uri: lb://admin-service
+          predicates:
+            - Path=/admin/**
+        - id: test
+          uri: http://baidu.com/
+          predicates:
+            - Path=/test
+    sentinel:
+      transport:
+        #dashboard: 139.159.133.183:8858
+        dashboard: 127.0.0.1:8858
+      datasource:
+        ds1.nacos:
+          serverAddr: http://139.159.133.183:8848
+          dataId: gw-flow
+          ruleType: gw_flow
+        ds2.nacos:
+          serverAddr: http://139.159.133.183:8848
+          dataId: api-group
+          ruleType: gw_api_group
+  redis:
+    host: 47.106.198.57
+    port: 7000

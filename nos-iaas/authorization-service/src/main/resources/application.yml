@@ -1,0 +1,10 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: authorization-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://139.159.133.183:8848 #huawei yun iaas
+
