@@ -1,3 +1,6 @@
+base:
+  nacos-addr: http://139.159.133.183:8848
+  test: hello test
 server:
   port: 80
 spring:
@@ -5,7 +8,7 @@ spring:
     name: gateway-service
   cloud:
     nacos:
-      server-addr: http://139.159.133.183:8848 #huawei yun iaas
+      server-addr:  ${base.nacos-addr} #huawei yun iaas
     gateway:
       discovery:
         locator:
@@ -26,13 +29,10 @@ spring:
         dashboard: 127.0.0.1:8858
       datasource:
         ds1.nacos:
-          serverAddr: http://139.159.133.183:8848
+          serverAddr: ${base.nacos-addr}
           dataId: gw-flow
           ruleType: gw_flow
         ds2.nacos:
-          serverAddr: http://139.159.133.183:8848
+          serverAddr: ${base.nacos-addr}
           dataId: api-group
           ruleType: gw_api_group
-  redis:
-    host: 47.106.198.57
-    port: 7000
