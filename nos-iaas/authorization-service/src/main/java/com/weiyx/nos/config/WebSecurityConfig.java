@@ -1,4 +1,4 @@
-package com.weiyx.nos.iaas.authorzation.config;
+package com.weiyx.nos.config;
 
 import org.springframework.cglib.proxy.NoOp;
 import org.springframework.context.annotation.Bean;

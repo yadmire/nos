@@ -1,4 +1,4 @@
-package com.weiyx.nos.iaas.gateway;
+package com.weiyx.nos;
 
 
 import org.springframework.boot.SpringApplication;

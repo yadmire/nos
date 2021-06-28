@@ -1,4 +1,4 @@
-package com.weiyx.nos.iaas.authorzation.config;
+package com.weiyx.nos.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
