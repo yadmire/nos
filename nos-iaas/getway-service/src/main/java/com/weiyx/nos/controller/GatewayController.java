@@ -14,7 +14,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/gw")
 public class GatewayController {
-    @Value("${base.test}")
+    @Value("${gate-service}")
     private String testStr;
     /**
      * 获取当前系统的限流策略

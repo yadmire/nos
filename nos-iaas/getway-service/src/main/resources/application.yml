@@ -17,7 +17,7 @@ spring:
     sentinel:
       transport:
         #dashboard: 139.159.133.183:8858
-        dashboard: ${base.sentinal-url}}
+        dashboard: 127.0.0.1:8080
       datasource:
         ds1.nacos:
           serverAddr: ${base.nacos-addr}
