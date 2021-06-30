@@ -1,0 +1,9 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: member-service
+  redis:
+    cache.clusterNodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384
+    cache.commandTimeout: 5000
+

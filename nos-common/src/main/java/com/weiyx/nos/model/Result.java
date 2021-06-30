@@ -58,7 +58,7 @@ public class Result<T> implements Serializable {
      * @param <T>
      * @return
      */
-    public <T> Result<T> fail(ErrorCodeEnum errorCodeEnum){
+    public static <T> Result<T> fail(ErrorCodeEnum errorCodeEnum){
         return restResult(null, errorCodeEnum.getCode(), errorCodeEnum.getMessage());
     }
     /**

@@ -2,6 +2,7 @@ package com.weiyx.nos.config.swagger;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * description:
@@ -12,6 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "swagger2")
+@Component
 public class SwaggerProperties {
     /**
      * 包扫描的路径
