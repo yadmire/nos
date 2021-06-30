@@ -16,12 +16,3 @@ spring:
             refresh: true
   application:
     name: message-service
-swagger2:
-  base-package: com.weiyx.nos.controller
-  description: message
-  email: asd742216537@hotmail.com
-  name: weiyx
-  terms-of-service-url: all of us
-  title: NOS
-  url: none
-  version: 1.0

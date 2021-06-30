@@ -39,6 +39,9 @@ public class Result<T> implements Serializable {
     public static <T> Result<T> success() {
         return restResult(null, SUCCESS, null);
     }
+    public static <T> Result<T> success(T data) {
+        return restResult(data, SUCCESS, null);
+    }
     /**
      * 响应错误
      *
