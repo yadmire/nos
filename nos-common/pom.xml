@@ -35,25 +35,32 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- Mysql 依赖 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- druids数据库连接池  -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
+            <scope>provided</scope>
         </dependency>
+
+
         <!-- Spring Data redis 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- 缓存的使用 -->
 <!--        <dependency>-->
@@ -96,7 +103,7 @@
             <artifactId>mapstruct-jdk8</artifactId>
         </dependency>
         <dependency>
-        <groupId>org.mapstruct</groupId>
+            <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
             <scope>provided</scope>
         </dependency>

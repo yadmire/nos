@@ -17,3 +17,15 @@ spring:
           - data-id: redis-source.yml
             refresh: true
   #        extension-configs: #同上
+  redis:
+    cluster:
+      nodes: 47.106.198.57:7000,47.106.198.57:7001,47.106.198.57:7002,47.106.198.57:7003,47.106.198.57:7004,47.106.198.57:7005
+      max-redirects: 3
+    jedis:
+      pool:
+        max-active: 300
+        max-idle: 100
+        min-idle: 20
+        max-wait: -1
+    timeout: 60000
+    database: 0

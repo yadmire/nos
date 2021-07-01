@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisNode;
@@ -23,6 +24,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Configuration
+@Conditional(RedisCondition.class)
 public class RedisClusterConfig {
     @Value("${spring.redis.cluster.nodes}")
     private String clusterNodes;
