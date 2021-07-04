@@ -1,6 +1,8 @@
 server:
   port: 8081
 spring:
+  application:
+    name: message-service
   cloud:
     nacos:
       server-addr: 139.159.133.183:8848
@@ -14,5 +16,5 @@ spring:
         extension-configs:
           - data-id: redis-source.yml
             refresh: true
-  application:
-    name: message-service
+          - data-id: jdbc-source.yml
+              refresh: false

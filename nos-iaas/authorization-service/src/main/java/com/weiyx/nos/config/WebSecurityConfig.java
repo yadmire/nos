@@ -41,13 +41,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //return new BCryptPasswordEncoder();
         return NoOpPasswordEncoder.getInstance();
     }
-    @Bean
-    public UserDetailsService UserDetailsService(){
-        InMemoryUserDetailsManager inMemoryUserDetailsManager=new InMemoryUserDetailsManager();
-        User user=new User("admin","123456", Arrays.asList(new SimpleGrantedAuthority("Role_Admin")));
-        inMemoryUserDetailsManager.createUser(user);
-        return inMemoryUserDetailsManager;
-    }
 
     /**
      * 配置资源的放行

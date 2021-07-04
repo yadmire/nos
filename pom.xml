@@ -92,11 +92,13 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid-boot-stater.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <version>${commons-beanutils.version}</version>
             </dependency>
+
             <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
             <dependency>
                 <groupId>org.redisson</groupId>
@@ -137,11 +139,7 @@
                 <version>${org.mapstruct.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <dependency>
-                <groupId>net.sf.supercsv</groupId>
-                <artifactId>super-csv</artifactId>
-                <version>${net.sf.supercsv.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>io.springside</groupId>
                 <artifactId>springside-utils</artifactId>
@@ -218,4 +216,11 @@
             <artifactId>jackson-annotations</artifactId>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>Central</id>
+            <name>Central Repository</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+    </repositories>
 </project>

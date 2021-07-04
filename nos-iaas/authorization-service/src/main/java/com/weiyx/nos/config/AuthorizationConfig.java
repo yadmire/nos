@@ -51,7 +51,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 // 第三方客户端的授权范围
                 .scopes("all")
                 // 配置登陆授权服务器的方式 password , refresh_token 方式 , 就是传值的时候需要传输一个 grant_type 值的开启, 默认只有 password
-                //.authorizedGrantTypes("password","refresh_token")
+                .authorizedGrantTypes("password","refresh_token")
                 // 获取的 token 有效期 半小时 (正常设置一个星期)
                 .accessTokenValiditySeconds(60 * 30)
                 // refresh 的 token 有效期 一天 (正常设置一个月)
