@@ -26,6 +26,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         // 如果 grant_type 等于 REFRESH_TOKEN 那么就进行数据的纠正 , 将 userName(id) --> userName
        // if(LoginConstant.REFRESH_TOKEN.equals(grant_type.toUpperCase())) userName = adjustUserName(userName, loginType);
 
-        return null;
+
+        return new User(username,password,enable,accountNonExpired,credentialsNonExpired,accountNonLocked,);
     }
 }

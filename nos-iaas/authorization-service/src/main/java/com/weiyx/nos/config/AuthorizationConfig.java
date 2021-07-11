@@ -22,7 +22,7 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 @EnableAuthorizationServer
 @Configuration
 public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
-    @Value("${jwt.key}")
+    @Value("${security.oauth2.authorization.jwt.key-value}")
     private String jwtKey;
 
     /**
@@ -56,7 +56,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 // 配置第三方客户端的名称
                 .withClient("nos-api")
                 // 第三方客户端的秘钥
-                .secret("nos-secret")
+                .secret(passwordEncoder.encode("nos-secret"))
                 // 第三方客户端的授权范围
                 .scopes("all")
                 // 配置登陆授权服务器的方式 password , refresh_token 方式 , 就是传值的时候需要传输一个 grant_type 值的开启, 默认只有 password
@@ -64,7 +64,16 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 // 获取的 token 有效期 半小时 (正常设置一个星期)
                 .accessTokenValiditySeconds(60 * 30)
                 // refresh 的 token 有效期 一天 (正常设置一个月)
-                .refreshTokenValiditySeconds(24 * 60 * 60);
+                .refreshTokenValiditySeconds(24 * 60 * 60)
+                .and()
+
+                .withClient("nos-web")
+                .secret("nos-web-secret")
+                .scopes("all")
+                // 配置登陆授权服务器的方式 client_credentials 临时获取 token 的方式
+                .authorizedGrantTypes("client_credentials")
+                // 设置 token 的生效时间为 10 分钟
+                .accessTokenValiditySeconds(60 * 10);
         super.configure(clients);
     }
 

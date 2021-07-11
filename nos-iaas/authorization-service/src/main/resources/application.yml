@@ -5,6 +5,19 @@ spring:
     name: authorization-service
   cloud:
     nacos:
-      discovery:
-        server-addr: http://139.159.133.183:8848 #huawei yun iaas
+      server-addr: http://139.159.133.183:8848 #huawei yun iaas
+      config:
+        file-extension: yml
+        username: nacos
+        password: nacos
+        shared-configs: #公用配置文件
+          - data-id: base-source.yml
+            refresh: true #是否支持自动刷新#是否支持自动刷新
+          - data-id: jdbc-source.yml
+            refresh: true #是否支持自动刷新#是否支持自动刷新
 
+security:
+  oauth2:
+    authorization:
+      jwt:
+        key-value: 123456

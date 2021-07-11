@@ -22,6 +22,11 @@ public class MybatiesPlusConfig {
         paginationInterceptor.setDbType(DbType.MYSQL);
         return paginationInterceptor;
     }
+
+    /**
+     * 乐观锁
+     * @return
+     */
     @Bean
     public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         OptimisticLockerInterceptor optimisticLockerInterceptor = new OptimisticLockerInterceptor();
