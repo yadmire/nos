@@ -14,6 +14,7 @@ import java.util.Date;
 @TableName("sys_role")
 public class SysRole {
     private Integer id;
+    @TableField("role_code")
     private String roleCode;
     private String description;
     @TableField("crate_by")

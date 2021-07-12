@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapp
 import com.weiyx.nos.constant.LoginConstant;
 import com.weiyx.nos.mapper.iaas.SysRoleMapper;
 import com.weiyx.nos.mapper.iaas.SysUserMapper;
+import com.weiyx.nos.mapper.iaas.SysUserRoleMapper;
 import com.weiyx.nos.model.iaas.SysUser;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

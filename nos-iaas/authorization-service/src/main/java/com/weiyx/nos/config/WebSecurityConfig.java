@@ -55,4 +55,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 进行资源的授权放行
         http.authorizeRequests().anyRequest().authenticated();
     }
+
+//    /**
+//     * 生成密码
+//     * @param args
+//     */
+//    public static void main(String[] args) {
+//        String ps = new BCryptPasswordEncoder().encode("123456");
+//        System.out.printf(ps);
+//    }
 }
