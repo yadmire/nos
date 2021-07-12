@@ -1,4 +1,4 @@
-package com.weiyx.nos.model;
+package com.weiyx.nos.model.iaas;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -6,15 +6,16 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * @author ：weiyuxin
+ * @date ：2021/7/12
+ */
 @Data
-@TableName("sys_user")
-public class SysUser {
-    private Integer id; // 用户id
-    private String username; // 用户名
-    private String phone;
-    private String email;
-    private Integer state;
-    private String password; // 密码
+@TableName("sys_role")
+public class SysRole {
+    private Integer id;
+    private String roleCode;
+    private String description;
     @TableField("crate_by")
     private String createBy;
     @TableField("create_time")
@@ -23,4 +24,5 @@ public class SysUser {
     private String updateBy;
     @TableField("update_time")
     private Date updateTime;
+
 }

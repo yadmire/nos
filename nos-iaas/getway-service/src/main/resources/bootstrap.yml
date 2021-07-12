@@ -16,5 +16,3 @@ spring:
         extension-configs :
           - data-id: redis-source.yml
             refresh: true
-          - data-id: jdbc-source.yml
-            refresh: false
