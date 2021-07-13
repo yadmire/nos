@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.weiyx.nos.mapper.iaas.SysUserMapper">
-    <resultMap id="BaseResultMap" type="com.weiyx.nos.model.iaas.SysUser">
+<mapper namespace="com.weiyx.nos.mapper.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.weiyx.nos.model.SysUser">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="username" jdbcType="VARCHAR" property="username" />
         <result column="phone" jdbcType="VARCHAR" property="phone" />

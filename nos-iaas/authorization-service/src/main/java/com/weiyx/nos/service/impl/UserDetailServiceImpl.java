@@ -1,16 +1,11 @@
 package com.weiyx.nos.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.weiyx.nos.constant.LoginConstant;
-import com.weiyx.nos.mapper.iaas.SysRoleMapper;
-import com.weiyx.nos.mapper.iaas.SysUserMapper;
-import com.weiyx.nos.mapper.iaas.SysUserRoleMapper;
-import com.weiyx.nos.model.iaas.SysUser;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,14 +14,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
     @Autowired
-    SysUserMapper sysUserMapper;
-    @Autowired
-    SysRoleMapper sysRoleMapper;
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -59,17 +53,42 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
         return userDetails;
     }
-
     private UserDetails getStaffUserDetails(String username) {
         UserDetails userDetails=null;
-        SysUser sysUser=sysUserMapper.selectOne( new QueryWrapper<SysUser>().eq("username",username));
-        if(sysUser!=null){
-            userDetails =new User(sysUser.getUsername(),sysUser.getPassword(),sysUser.getState().equals(1),true,true,true,new ArrayList<>());
-        }
+        userDetails=jdbcTemplate.queryForObject(LoginConstant.QUERY_ADMIN_SQL,(resultSet, i) -> {
+            if(resultSet.wasNull()){
+                throw new UsernameNotFoundException("用户:" + username + "不存在");
+            }
+            long userId = resultSet.getLong("id");
+            // 拿出用户的密码
+            String password = resultSet.getString("password");
+            // 拿出用户的状态
+            int status = resultSet.getInt("status");
+            List<String> permissions=jdbcTemplate.queryForList(LoginConstant.QUERY_AUTHORITYBYUSER,String.class,userId);
+            // 创建一个用户对象 , 这里的用户名称推荐写 id 以后在拿出对象的时候查询本条数据就会方便许多, 不会出现重名的用户拿不到的现象
+            return new User(String.valueOf(userId), password, status == 1, true, true, true,
+                    permissions.stream().distinct().map(auCode -> new SimpleGrantedAuthority(auCode)).collect(Collectors.toList()));
+        },username);
         return userDetails;
     }
 
     private UserDetails getCusUserDetails(String username) {
-        return null;
+        UserDetails userDetails=null;
+        userDetails=jdbcTemplate.queryForObject(LoginConstant.QUERY_CUS_SQL,(resultSet, i) -> {
+            if(resultSet.wasNull()){
+                throw new UsernameNotFoundException("用户:" + username + "不存在");
+            }
+            long userId = resultSet.getLong("id");
+            // 拿出用户的密码
+            String password = resultSet.getString("password");
+            // 拿出用户的状态
+            int status = resultSet.getInt("status");
+            List<String> permissions=jdbcTemplate.queryForList(LoginConstant.QUERY_AUTHORITYBYUSER,String.class,userId);
+            // 创建一个用户对象 , 这里的用户名称推荐写 id 以后在拿出对象的时候查询本条数据就会方便许多, 不会出现重名的用户拿不到的现象
+            return new User(String.valueOf(userId), password, status == 1, true, true, true,
+                    permissions.stream().distinct().map(auCode -> new SimpleGrantedAuthority(auCode)).collect(Collectors.toList()));
+        },username);
+        return userDetails;
+
     }
 }

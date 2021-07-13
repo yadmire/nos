@@ -1,4 +1,4 @@
-package com.weiyx.nos.model.iaas;
+package com.weiyx.nos.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -11,11 +11,11 @@ import java.util.Date;
  * @date ：2021/7/12
  */
 @Data
-@TableName("sys_authority")
-public class SysAuthority {
+@TableName("sys_role")
+public class SysRole {
     private Integer id;
-    @TableField("authority_code")
-    private String authorityCode;
+    @TableField("role_code")
+    private String roleCode;
     private String description;
     @TableField("crate_by")
     private String createBy;

@@ -4,8 +4,6 @@
 */
 package com.weiyx.nos.service;
 
-import com.weiyx.nos.model.SysUser;
-
 public interface SysUserService {
     /**
     * deleteByPrimaryKey

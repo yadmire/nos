@@ -1,7 +1,6 @@
 package com.weiyx.nos.controller;
 
 import com.weiyx.nos.model.Result;
-import com.weiyx.nos.model.SysUser;
 import com.weiyx.nos.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

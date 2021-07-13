@@ -4,8 +4,6 @@
 */
 package com.weiyx.nos.service.impl;
 
-import com.weiyx.nos.mapper.SysUserMapper;
-import com.weiyx.nos.model.SysUser;
 import org.springframework.stereotype.Service;
 
 @Service

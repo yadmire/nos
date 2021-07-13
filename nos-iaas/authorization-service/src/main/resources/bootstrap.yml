@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 9999
 spring:
   application:
     name: authorization-service
@@ -15,9 +15,3 @@ spring:
             refresh: true #是否支持自动刷新#是否支持自动刷新
           - data-id: jdbc-source.yml
             refresh: true #是否支持自动刷新#是否支持自动刷新
-
-security:
-  oauth2:
-    authorization:
-      jwt:
-        key-value: 123456

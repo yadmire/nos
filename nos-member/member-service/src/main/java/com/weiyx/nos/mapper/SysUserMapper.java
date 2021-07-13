@@ -1,47 +1,9 @@
 package com.weiyx.nos.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.weiyx.nos.model.SysUser;
+import org.springframework.stereotype.Repository;
 
-public interface SysUserMapper {
-    /**
-    * deleteByPrimaryKey
-    * @param id id
-    * @return int int
-    */
-    int deleteByPrimaryKey(Integer id);
-
-    /**
-    * insert
-    * @param record record
-    * @return int int
-    */
-    int insert(SysUser record);
-
-    /**
-    * insertSelective
-    * @param record record
-    * @return int int
-    */
-    int insertSelective(SysUser record);
-
-    /**
-    * selectByPrimaryKey
-    * @param id id
-    * @return SysUser SysUser
-    */
-    SysUser selectByPrimaryKey(Integer id);
-
-    /**
-    * updateByPrimaryKeySelective
-    * @param record record
-    * @return int int
-    */
-    int updateByPrimaryKeySelective(SysUser record);
-
-    /**
-    * updateByPrimaryKey
-    * @param record record
-    * @return int int
-    */
-    int updateByPrimaryKey(SysUser record);
+@Repository
+public interface SysUserMapper extends BaseMapper<SysUser> {
 }

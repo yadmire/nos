@@ -1,4 +1,4 @@
-package com.weiyx.nos.model.iaas;
+package com.weiyx.nos.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

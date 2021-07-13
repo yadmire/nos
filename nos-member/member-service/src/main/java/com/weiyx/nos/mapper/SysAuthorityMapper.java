@@ -1,13 +1,15 @@
-package com.weiyx.nos.mapper.iaas;
+package com.weiyx.nos.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.weiyx.nos.model.iaas.SysUserRole;
+import com.weiyx.nos.model.SysAuthority;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author ：weiyuxin
  * @date ：2021/7/12
  */
 @Repository
-public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
+public interface SysAuthorityMapper extends BaseMapper<SysAuthority> {
 }
