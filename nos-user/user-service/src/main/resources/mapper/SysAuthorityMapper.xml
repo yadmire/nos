@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weiyx.nos.mapper.SysAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.weiyx.nos.model.SysAuthority">
+    <!--@mbg.generated-->
+    <!--@Table sys_authority-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="authority_code" jdbcType="VARCHAR" property="authorityCode" />
+    <result column="authority_name" jdbcType="VARCHAR" property="authorityName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_by" jdbcType="INTEGER" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_by" jdbcType="INTEGER" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, authority_code, authority_name, description, `status`, create_by, create_time, 
+    update_time, update_by
+  </sql>
+</mapper>

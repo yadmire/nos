@@ -12,7 +12,7 @@
         <module>nos-iaas</module>
         <module>nos-common</module>
         <module>nos-admin</module>
-        <module>nos-member</module>
+        <module>nos-user</module>
         <module>nos-task</module>
         <module>nos-message</module>
     </modules>
@@ -100,23 +100,23 @@
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>${redisson-spring-boot-starter.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.redisson</groupId>-->
+<!--                <artifactId>redisson-spring-boot-starter</artifactId>-->
+<!--                <version>${redisson-spring-boot-starter.version}</version>-->
+<!--            </dependency>-->
             <!-- https://mvnrepository.com/artifact/com.alicp.jetcache/jetcache-starter-redis -->
-            <dependency>
-                <groupId>com.alicp.jetcache</groupId>
-                <artifactId>jetcache-starter-redis</artifactId>
-                <version>${jetcache-starter-redis.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.alicp.jetcache</groupId>-->
+<!--                <artifactId>jetcache-starter-redis</artifactId>-->
+<!--                <version>${jetcache-starter-redis.version}</version>-->
+<!--            </dependency>-->
             <!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
-            <dependency>
-                <groupId>com.lmax</groupId>
-                <artifactId>disruptor</artifactId>
-                <version>${disruptor.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.lmax</groupId>-->
+<!--                <artifactId>disruptor</artifactId>-->
+<!--                <version>${disruptor.version}</version>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -145,46 +145,46 @@
                 <artifactId>springside-utils</artifactId>
                 <version>${springside-utils.version}</version>
             </dependency>
-            <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time</artifactId>
-                <version>${joda-time.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squareup.okhttp3</groupId>
-                <artifactId>okhttp</artifactId>
-                <version>${okhttp.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squareup.okio</groupId>
-                <artifactId>okio</artifactId>
-                <version>${okio.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.aliyun.oss</groupId>
-                <artifactId>aliyun-sdk-oss</artifactId>
-                <version>${aliyun-sdk-oss.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.aliyun</groupId>
-                <artifactId>aliyun-java-sdk-core</artifactId>
-                <version>${aliyun-java-sdk-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.aliyun</groupId>
-                <artifactId>aliyun-java-sdk-dm</artifactId>
-                <version>${aliyun-java-sdk-dm.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>joda-time</groupId>-->
+<!--                <artifactId>joda-time</artifactId>-->
+<!--                <version>${joda-time.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.squareup.okhttp3</groupId>-->
+<!--                <artifactId>okhttp</artifactId>-->
+<!--                <version>${okhttp.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.squareup.okio</groupId>-->
+<!--                <artifactId>okio</artifactId>-->
+<!--                <version>${okio.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.aliyun.oss</groupId>-->
+<!--                <artifactId>aliyun-sdk-oss</artifactId>-->
+<!--                <version>${aliyun-sdk-oss.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.aliyun</groupId>-->
+<!--                <artifactId>aliyun-java-sdk-core</artifactId>-->
+<!--                <version>${aliyun-java-sdk-core.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.aliyun</groupId>-->
+<!--                <artifactId>aliyun-java-sdk-dm</artifactId>-->
+<!--                <version>${aliyun-java-sdk-dm.version}</version>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.t-io</groupId>
-                <artifactId>tio-websocket-spring-boot-starter</artifactId>
-                <version>${tio.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.t-io</groupId>-->
+<!--                <artifactId>tio-websocket-spring-boot-starter</artifactId>-->
+<!--                <version>${tio.version}</version>-->
+<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
     <dependencies>

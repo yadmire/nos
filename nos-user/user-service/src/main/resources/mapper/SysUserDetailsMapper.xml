@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weiyx.nos.mapper.SysUserDetailsMapper">
+  <resultMap id="BaseResultMap" type="com.weiyx.nos.model.SysUserDetails">
+    <!--@mbg.generated-->
+    <!--@Table sys_user_details-->
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_idn" jdbcType="VARCHAR" property="userIdn" />
+    <result column="user_idtype" jdbcType="VARCHAR" property="userIdtype" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    user_id, user_idn, user_idtype, realname, email, job, birthday
+  </sql>
+</mapper>
