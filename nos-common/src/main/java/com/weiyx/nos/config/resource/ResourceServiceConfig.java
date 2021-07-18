@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
-    @Value("${}")
+    @Value("${security.oauth2.authorization.jwt.key-value}")
     private static String JWT_KEY;
 
 

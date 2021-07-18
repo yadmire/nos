@@ -50,6 +50,7 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
             return buildNoAuthorizedResult(exchange); // 如果 token 数据是空返回错误结果
         }
         else if (stringRedisTemplate.hasKey(token)) {
+            // TODO redis 续期
             return chain.filter(exchange);  // 放行并返回
         }
         // 到最后都没走直接返回没有校验
