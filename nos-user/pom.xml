@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>nos-member</artifactId>
+    <artifactId>nos-user</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>user-api</module>
