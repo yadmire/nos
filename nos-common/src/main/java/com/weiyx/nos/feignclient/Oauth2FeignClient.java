@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "authorization-service")
 public interface Oauth2FeignClient {
     @PostMapping("/oauth/token")
-    Result<JwtToken> getToken(
+    JwtToken getToken(
             @RequestParam("grant_type") String grantType, // 授权类型
             @RequestParam("username")String username,
             @RequestParam("password")String password,
