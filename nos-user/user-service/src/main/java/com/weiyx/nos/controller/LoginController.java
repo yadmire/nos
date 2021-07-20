@@ -1,6 +1,5 @@
 package com.weiyx.nos.controller;
 
-import com.weiyx.nos.feignclient.Oauth2FeignClient;
 import com.weiyx.nos.model.Result;
 import com.weiyx.nos.service.UserLoginService;
 import com.weiyx.nos.vo.LoginDetailVo;
@@ -9,7 +8,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Api(value = "用户登录")
@@ -30,8 +28,12 @@ public class LoginController {
         return Result.success();
     }
     @ApiOperation("客户用户登录（使用手机号、邮箱登录）")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "account", value = "用户名称"),
+            @ApiImplicitParam(name = "password", value = "用户的密码"),
+    })
     @PostMapping("/cus")
-    public Result cusUserLogin(){
+    public Result cusUserLogin(String account,String password){
         return Result.success();
     }
 

@@ -1,5 +1,6 @@
 package com.weiyx.nos.config.resource;
 
+import com.weiyx.nos.model.LoginUser;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -38,12 +39,10 @@ public class OauthUserAuthenticationConverter implements UserAuthenticationConve
 
     @Override
     public Authentication extractAuthentication(Map<String, ?> map) {
-        if (map.containsKey("user_name")) {
-            Map principalMap =new LinkedHashMap();
-            principalMap.put("user_name",map.get("user_name"));
-            principalMap.put("user_id",map.get("user_id"));
+        if (map.containsKey("user_name")&&map.containsKey("user_id")) {
+            LoginUser loginUser=new LoginUser((Integer) map.get("user_id"),(String)map.get("user_name"));
 
-            Object principal = principalMap;
+            Object principal = loginUser;
 
             Collection<? extends GrantedAuthority> authorities = this.getAuthorities(map);
 

@@ -49,7 +49,7 @@ public class SysUser {
      * 账号状态：1正常，0 锁定
      */
     @TableField(value = "`status`")
-    @ApiModelProperty(value="账号状态：1正常，0 锁定")
+    @ApiModelProperty(value="账号状态：1正常，0 未激活，-1 冻结")
     private Integer status;
 
     /**
