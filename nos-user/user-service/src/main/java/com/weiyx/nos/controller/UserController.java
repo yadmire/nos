@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/account")
 @Api(value = "用户账号接口")
 public class UserController {
+    @Autowired
     private SysUserService sysUserService;
 
 

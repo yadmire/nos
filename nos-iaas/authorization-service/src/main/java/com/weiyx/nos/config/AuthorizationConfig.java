@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,11 +12,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @EnableAuthorizationServer
 @Configuration
@@ -43,6 +46,9 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Qualifier("userDetailServiceImpl")
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Resource
+    private UserJWTTokenEnhancer userJwtTokenEnhancer;
 
     /**
      * 配置客户端
@@ -92,7 +98,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 // 设置 token 存储在哪里 , 利用 jwt 技术进行存储
                 .tokenStore(jwtTokenStore())
                 // 进行密码授权 私钥加密
-                .tokenEnhancer(jwtAccessTokenConverter());
+                .tokenEnhancer(initTokenChain());
         // 调用父类的方法进行处理
         super.configure(endpoints);
     }
@@ -106,11 +112,22 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
         // 创建 JwtToken 存储对象 并返回
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
+
+    /**
+     * 创建token链
+     *
+     * @return
+     */
+    private TokenEnhancerChain initTokenChain(){
+        TokenEnhancerChain tokenEnhancerChain=new TokenEnhancerChain();
+        List<TokenEnhancer> list=new ArrayList<>();
+        list.add(userJwtTokenEnhancer);          //添加自定义tokenEnhancer
+        list.add(jwtAccessTokenConverter());
+        tokenEnhancerChain.setTokenEnhancers(list);
+        return tokenEnhancerChain;
+    }
     /**
      * 设置 token 加密解密规则
-     * 因为之前的 redis 存储的方式虽然解决了多个授权服务器获取 token 信息的共享机制, 但是又再次出现了一个问题, 那就是存储的时候所有的资源服务器都访问一个授权服务器的时候会出现授权服务器压力非常大的原因, 所以使用 JWT 技术进行 user 的数据加密存储在 Token 中从根本问题上解决了授权服务器压力大的原因
-     * 因为 user 数据存储在 token 中 使用密钥对进行加密 , 所以就不需要使用 redis 进行数据的存储了, 即解决了多个授权服务器数据共享的问题 , 也解决了授权服务器压力大的原因
-     * 所以在当前的配置文件中删除的 redis 的相关配置代码
      *
      * @return JwtAccessTokenConverter token 加密规则对象
      */

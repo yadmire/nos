@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
 spring:
   application:
     name: user-service
@@ -15,4 +15,6 @@ spring:
             refresh: true #是否支持自动刷新#是否支持自动刷新
         extension-configs :
           - data-id: redis-source.yml
+            refresh: true
+          - data-id: jdbc-source.yml
             refresh: true

@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
     @Value("${security.oauth2.authorization.jwt.key-value}")
-    private static String JWT_KEY;
+    private String JWT_KEY;
 
 
     @Override
@@ -30,7 +30,7 @@ public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-        JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
+        JwtAccessTokenConverter tokenConverter = new OauthJwtAccessTokenConverter();
         tokenConverter.setSigningKey(JWT_KEY);
         return tokenConverter;
     }

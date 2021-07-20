@@ -1,6 +1,7 @@
 package com.weiyx.nos.service.impl;
 
 import com.weiyx.nos.constant.LoginConstant;
+import com.weiyx.nos.model.NosUser;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -59,15 +60,17 @@ public class UserDetailServiceImpl implements UserDetailsService {
             if(resultSet.wasNull()){
                 throw new UsernameNotFoundException("用户:" + username + "不存在");
             }
-            long userId = resultSet.getLong("id");
+            int userId = resultSet.getInt("id");
             // 拿出用户的密码
             String password = resultSet.getString("password");
             // 拿出用户的状态
             int status = resultSet.getInt("status");
             List<String> permissions=jdbcTemplate.queryForList(LoginConstant.QUERY_AUTHORITYBYUSER,String.class,userId);
             // 创建一个用户对象 , 这里的用户名称推荐写 id 以后在拿出对象的时候查询本条数据就会方便许多, 不会出现重名的用户拿不到的现象
-            return new User(String.valueOf(userId), password, status == 1, true, true, true,
+            return  new NosUser(userId,username, password,
                     permissions.stream().distinct().map(auCode -> new SimpleGrantedAuthority(auCode)).collect(Collectors.toList()));
+//            return  new User(username, password,
+//                    permissions.stream().distinct().map(auCode -> new SimpleGrantedAuthority(auCode)).collect(Collectors.toList()));
         },username);
         return userDetails;
     }
