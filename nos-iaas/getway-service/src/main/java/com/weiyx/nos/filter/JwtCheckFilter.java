@@ -28,7 +28,7 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
     /**
      * 不需要授权访问的地址字符串
      */
-    @Value("${no.requires.uris:/admin/login}")
+    @Value("${no.requires.uris:/user/login/sys,/user/login/cus}")
     private Set<String> noRequiresTokenUris;
     /**
      * redis 客户端对象

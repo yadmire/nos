@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -22,6 +23,11 @@ import java.util.stream.Collectors;
 public class UserDetailServiceImpl implements UserDetailsService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    /**
+     * 密码加密解析器
+     */
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -40,12 +46,14 @@ public class UserDetailServiceImpl implements UserDetailsService {
             // refresh token 的用户名为用户id，需要进行转转
         }
         switch (loginType){
-            case "cus":{
-                userDetails = getCusUserDetails(username);
+            // 通过密码校验方式登录
+            case "password":{
+                userDetails = getUserPwdDetails(username);
                 break;
             }
-            case "staff":{
-                userDetails = getStaffUserDetails(username);
+            case "code":{
+                // TODO 后续添加通过redis验证码替代password进行校验
+                userDetails=null;
                 break;
             }
             default:{
@@ -54,7 +62,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
         return userDetails;
     }
-    private UserDetails getStaffUserDetails(String username) {
+    private UserDetails getUserPwdDetails(String username) {
         UserDetails userDetails=null;
         userDetails=jdbcTemplate.queryForObject(LoginConstant.QUERY_ADMIN_SQL,(resultSet, i) -> {
             if(resultSet.wasNull()){
@@ -67,31 +75,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
             int status = resultSet.getInt("status");
             List<String> permissions=jdbcTemplate.queryForList(LoginConstant.QUERY_AUTHORITYBYUSER,String.class,userId);
             // 创建一个用户对象 , 这里的用户名称推荐写 id 以后在拿出对象的时候查询本条数据就会方便许多, 不会出现重名的用户拿不到的现象
-            return  new NosUser(userId,username, password,
-                    permissions.stream().distinct().map(auCode -> new SimpleGrantedAuthority(auCode)).collect(Collectors.toList()));
-//            return  new User(username, password,
-//                    permissions.stream().distinct().map(auCode -> new SimpleGrantedAuthority(auCode)).collect(Collectors.toList()));
-        },username);
-        return userDetails;
-    }
-
-    private UserDetails getCusUserDetails(String username) {
-        UserDetails userDetails=null;
-        userDetails=jdbcTemplate.queryForObject(LoginConstant.QUERY_CUS_SQL,(resultSet, i) -> {
-            if(resultSet.wasNull()){
-                throw new UsernameNotFoundException("用户:" + username + "不存在");
-            }
-            long userId = resultSet.getLong("id");
-            // 拿出用户的密码
-            String password = resultSet.getString("password");
-            // 拿出用户的状态
-            int status = resultSet.getInt("status");
-            List<String> permissions=jdbcTemplate.queryForList(LoginConstant.QUERY_AUTHORITYBYUSER,String.class,userId);
-            // 创建一个用户对象 , 这里的用户名称推荐写 id 以后在拿出对象的时候查询本条数据就会方便许多, 不会出现重名的用户拿不到的现象
-            return new User(String.valueOf(userId), password, status == 1, true, true, true,
+            return  new NosUser(userId,username, password,status==1,
                     permissions.stream().distinct().map(auCode -> new SimpleGrantedAuthority(auCode)).collect(Collectors.toList()));
         },username);
         return userDetails;
-
     }
 }

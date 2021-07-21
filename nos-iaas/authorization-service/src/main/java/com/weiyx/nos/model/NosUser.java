@@ -22,8 +22,8 @@ public class NosUser extends User {
         return userId;
     }
 
-    public NosUser(Integer userId,String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        super(username, password, authorities);
+    public NosUser(Integer userId,String username, String password,boolean status, Collection<? extends GrantedAuthority> authorities) {
+        super(username, password,status,true,true,true, authorities);
         this.userId=userId;
     }
 }
