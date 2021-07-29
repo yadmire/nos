@@ -49,8 +49,7 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
         if (StringUtils.isEmpty(token)){
             return buildNoAuthorizedResult(exchange); // 如果 token 数据是空返回错误结果
         }
-        else if (true) {
-            //else if (stringRedisTemplate.hasKey(token)) {
+        else if (stringRedisTemplate.hasKey(token)) {
             // TODO redis 续期
             return chain.filter(exchange);  // 放行并返回
         }

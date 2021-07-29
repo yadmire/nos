@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
-    @Value("${security.oauth2.authorization.jwt.key-value}")
+    @Value("${security.oauth2.authorization.jwt.key}")
     private String JWT_KEY;
     @Value("${security.oauth2.resource.exclude-uri}")
     private String[] antPatterns;

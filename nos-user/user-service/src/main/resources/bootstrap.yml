@@ -8,13 +8,9 @@ spring:
       server-addr: 139.159.133.183:8848
       config:
         file-extension: yml
-        username: nacos
-        password: nacos
         shared-configs: #公用配置文件
-          - data-id: base-source.yml
+          - data-id: nos-config.yml
             refresh: true #是否支持自动刷新#是否支持自动刷新
         extension-configs :
-          - data-id: redis-source.yml
-            refresh: true
-          - data-id: jdbc-source.yml
+          - data-id: datesource-config.yml
             refresh: true
