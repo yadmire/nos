@@ -52,22 +52,26 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.2.7.RELEASE</version>
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
                 <configuration>
-                    <imageName>kdvolder/jdk8</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <imageName>nos-auth</imageName>
+                    <!--基础镜像，相当于Dockerfile里的from-->
+                    <baseImage>java:8</baseImage>
+                    <workdir>/ROOT</workdir>
+                    <entryPoint>["java", "‐jar", "${project.build.finalName}.jar"]</entryPoint>
                     <resources>
                         <resource>
-                            <targetPath>/</targetPath>
+                            <targetPath>/ROOT</targetPath>
                             <directory>${project.build.directory}</directory>
+                            <!--把哪个文件上传到docker，相当于Dockerfile里的add testDocker.jar /-->
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+                    <dockerHost>http://139.159.133.183:2375</dockerHost>
                 </configuration>
             </plugin>
         </plugins>

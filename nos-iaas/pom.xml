@@ -12,7 +12,7 @@
     <artifactId>nos-iaas</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>getway-service</module>
+        <module>gateway-server</module>
         <module>authorization-service</module>
     </modules>
 

@@ -5,10 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+/**
+ * @author weiyuxin
+ */
 @SpringBootApplication(exclude = {})
 @EnableDiscoveryClient
-public class GateWayServiceApplication {
+public class GateWayServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(GateWayServiceApplication.class,args);
+        SpringApplication.run(GateWayServerApplication.class,args);
     }
 }
