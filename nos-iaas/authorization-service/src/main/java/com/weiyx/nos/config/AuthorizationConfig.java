@@ -25,7 +25,7 @@ import java.util.List;
 @EnableAuthorizationServer
 @Configuration
 public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
-    @Value("${security.oauth2.authorization.jwt.key-value}")
+    @Value("${resource.jwt-key}")
     private String jwtKey;
 
     /**

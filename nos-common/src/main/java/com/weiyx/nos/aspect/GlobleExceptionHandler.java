@@ -11,8 +11,4 @@ public class GlobleExceptionHandler  {
     public Result handlerRuntimeException(RuntimeException exception) {
         return Result.fail(ErrorCodeEnum.SYSTEM_ERROR);
     }
-    @ExceptionHandler(value =Exception.class)
-    public Result handlerException(Exception exception) {
-        return Result.fail(ErrorCodeEnum.SYSTEM_ERROR);
-    }
 }

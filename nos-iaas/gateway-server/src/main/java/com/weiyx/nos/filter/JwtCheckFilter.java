@@ -86,7 +86,7 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
     private String getUserToken(ServerWebExchange exchange) {
         HttpHeaders headers=exchange.getRequest().getHeaders();
         String authorization = headers.getFirst(HttpHeaders.AUTHORIZATION);
-        return authorization == null ? null : authorization.replace("bearer ", "");
+        return authorization == null ? null : authorization.replace("Bearer ", "");
     }
 
     private boolean isRequireToken(ServerWebExchange exchange) {

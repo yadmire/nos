@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
 
 
-    @Value("${security.oauth2.authorization.jwt.key-value}")
+    @Value("${resource.jwt-key}                                   ")
     private String JWT_KEY;
 
 

@@ -1,6 +1,9 @@
 package com.weiyx.nos.config.resource;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -15,11 +18,10 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableResourceServer
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableConfigurationProperties(ResourceConfigProperties.class)
 public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
-    @Value("${security.oauth2.authorization.jwt.key}")
-    private String JWT_KEY;
-    @Value("${security.oauth2.resource.exclude-uri}")
-    private String[] antPatterns;
+    @Autowired
+    ResourceConfigProperties resourceConfigProperties;
 
 
     @Override
@@ -29,6 +31,7 @@ public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        String[] antPatterns = (String[]) ArrayUtils.addAll(resourceConfigProperties.getExcludePriUrls(), resourceConfigProperties.getExcludePubUrls());
         http.csrf()
                 .disable()
                 .sessionManagement().disable()
@@ -46,7 +49,7 @@ public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter tokenConverter = new OauthJwtAccessTokenConverter();
-        tokenConverter.setSigningKey(JWT_KEY);
+        tokenConverter.setSigningKey(resourceConfigProperties.getJwtKey());
         return tokenConverter;
     }
 }

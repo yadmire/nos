@@ -50,8 +50,4 @@ public class SwaggerProperties {
      */
     private String version;
 
-    /**
-     * API 的服务团队
-     */
-    private String termsOfServiceUrl;
 }
