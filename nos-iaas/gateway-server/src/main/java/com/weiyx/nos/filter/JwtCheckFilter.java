@@ -1,6 +1,7 @@
 package com.weiyx.nos.filter;
 
 import com.alibaba.fastjson.JSONObject;
+import com.weiyx.nos.util.UrlMatcher;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,8 +29,8 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
     /**
      * 不需要授权访问的地址字符串
      */
-    @Value("${no.requires.uris:/user/login/sys,/user/login/cus}")
-    private Set<String> noRequiresTokenUris;
+    @Value("${no.requires.uris:/user/login/sys,/user/login/cus,/*/doc.html,/*/v2/api-docs}")
+    private String noRequiresTokenUris;
     /**
      * redis 客户端对象
      */
@@ -38,7 +39,6 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-
 
         if (isRequireToken(exchange)){
             return chain.filter(exchange); // 放行并返回
@@ -90,11 +90,11 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
     }
 
     private boolean isRequireToken(ServerWebExchange exchange) {
-        // TODO 校验改为数组正则判断
+        UrlMatcher noRequiresTokenMatcher =new UrlMatcher(noRequiresTokenUris,"");
         // 获取请求地址
         String path = exchange.getRequest().getURI().getPath();
         // 如果集合中有值一样
-        if (noRequiresTokenUris.contains(path)) {
+        if (noRequiresTokenMatcher.matches(path)) {
             // 返回不需要
             return true;
         }
