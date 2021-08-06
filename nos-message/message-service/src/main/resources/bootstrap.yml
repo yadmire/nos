@@ -6,6 +6,8 @@ spring:
   cloud:
     nacos:
       server-addr: 139.159.133.183:8848
+      discovery:
+        namespace: nos_dev
       config:
         file-extension: yml
         username: nacos
