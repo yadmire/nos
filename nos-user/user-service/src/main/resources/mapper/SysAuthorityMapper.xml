@@ -14,9 +14,12 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_by" jdbcType="INTEGER" property="updateBy" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     <!--@mbg.generated-->
     id, authority_code, authority_name, description, `status`, create_by, create_time, 
     update_time, update_by
   </sql>
+  <select id="searchByid" resultType="com.weiyx.nos.model.SysAuthority">
+    select * from
+  </select>
 </mapper>
