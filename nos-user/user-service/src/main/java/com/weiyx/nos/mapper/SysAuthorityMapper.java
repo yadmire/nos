@@ -6,5 +6,4 @@ import com.weiyx.nos.model.SysAuthority;
 import java.util.List;
 
 public interface SysAuthorityMapper extends BaseMapper<SysAuthority> {
-     List<SysAuthority> searchByid(String id);
 }

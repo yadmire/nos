@@ -13,7 +13,6 @@ public class UserInfoController {
     @GetMapping("/user/info")
     public Principal userInfo(Principal principal){
         Authentication authentication = getAuthentication();
-        System.out.printf(authentication.getPrincipal().toString());
         return principal;
     }
     public static Authentication getAuthentication() {

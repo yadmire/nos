@@ -1,14 +1,20 @@
 package com.weiyx.nos.controller;
 
 import com.weiyx.nos.enums.UserTypeEnum;
+import com.weiyx.nos.model.LoginUser;
 import com.weiyx.nos.model.Result;
 import com.weiyx.nos.service.UserLoginService;
+import com.weiyx.nos.utils.LoginAuthorizationUtils;
 import com.weiyx.nos.vo.LoginDetailVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.http.Header;
+import org.apache.http.HttpRequest;
+import org.apache.http.client.methods.HttpHead;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,7 +49,13 @@ public class LoginController {
 
     @ApiOperation("用户退出登录")
     @PostMapping("logout")
-    public Result logout(){
+    public Result logout(HttpRequest request){
+        Header header = request.getFirstHeader(HttpHeaders.AUTHORIZATION);
+        if(header == null){
+            return Result.success();
+        }
+        String token=header.getValue().replace("Bearer ", "");
+        userLoginService.logout(token);
         return Result.success();
     }
 

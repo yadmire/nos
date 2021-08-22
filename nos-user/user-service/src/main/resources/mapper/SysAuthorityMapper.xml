@@ -19,7 +19,4 @@
     id, authority_code, authority_name, description, `status`, create_by, create_time, 
     update_time, update_by
   </sql>
-  <select id="searchByid" resultType="com.weiyx.nos.model.SysAuthority">
-    select * from
-  </select>
 </mapper>

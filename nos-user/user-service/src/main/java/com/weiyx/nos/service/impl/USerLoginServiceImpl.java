@@ -77,4 +77,10 @@ public class USerLoginServiceImpl implements UserLoginService {
         LoginDetailVo loginDetailVo=new LoginDetailVo(token,null,jwtToken.getRefreshToken(),authorities);
         return loginDetailVo;
     }
+
+    @Override
+    public Boolean logout(String token) {
+        return  redisTemplate.delete(token);
+
+    }
 }
