@@ -42,7 +42,7 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "current" ,value = "当前页") ,
             @ApiImplicitParam(name = "size" ,value = "每页显示的条数") ,
-            @ApiImplicitParam(name = "phone" ,value = "员工的手机号码") ,
+            @ApiImplicitParam(name = "phone" ,value = "手机号码") ,
             @ApiImplicitParam(name = "username" ,value = "用户名") ,
     })
     @GetMapping
