@@ -46,6 +46,7 @@ public class UserController {
             @ApiImplicitParam(name = "username" ,value = "用户名") ,
     })
     @GetMapping
+    @PreAuthorize("hasAuthority('SYS_USER_READ')")
     public Result<Page<SysUserVo>>getUsers(@ApiIgnore Page<SysUser> page , String phone , String username){
         Page<SysUserVo> pageData=sysUserService.getUsers(page,phone,username);
         return Result.success(pageData);
@@ -59,7 +60,7 @@ public class UserController {
 
     @ApiOperation(value = "管理员后台新增用户")
     @PostMapping
-    @PreAuthorize("hasAuthority('user_edit')")
+    @PreAuthorize("hasAuthority('SYS_USER_EDIT')")
     public Result add(){
         return Result.success();
     }
