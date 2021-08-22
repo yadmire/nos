@@ -28,7 +28,7 @@ public class LoginController {
     @Autowired
     private UserLoginService userLoginService;
 
-    @ApiOperation("管理员用户登录（使用账号登录）")
+    @ApiOperation("管理员用户登录（使用账号登录）登录后使用Head：Authorization:Bearer 认证")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户名称"),
             @ApiImplicitParam(name = "password", value = "用户的密码"),
