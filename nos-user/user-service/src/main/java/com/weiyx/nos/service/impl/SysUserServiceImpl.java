@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.weiyx.nos.vo.SysUserVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
@@ -38,5 +39,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             }).collect(Collectors.toList()));
         }
         return result;
+    }
+
+    @Override
+    public boolean addUser(SysUser user) {
+        //TODO 密码复杂性校验
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        return save(user);
     }
 }

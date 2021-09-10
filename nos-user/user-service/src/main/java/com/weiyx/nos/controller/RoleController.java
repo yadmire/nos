@@ -28,7 +28,7 @@ public class RoleController {
     }
 
     @ApiOperation("根据id修改角色")
-    @PatchMapping
+    @PutMapping
     public Result editRole(){
         return Result.success();
     }

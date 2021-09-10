@@ -9,4 +9,6 @@ public interface SysUserService extends IService<SysUser>{
 
 
     Page<SysUserVo> getUsers(Page<SysUser> page, String phone, String username);
+
+    boolean addUser(SysUser user);
 }

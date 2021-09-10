@@ -1,7 +1,6 @@
 package com.weiyx.nos.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.weiyx.nos.costant.ErrorCodeEnum;
 import com.weiyx.nos.model.Result;
 import com.weiyx.nos.model.SysUser;
 import com.weiyx.nos.service.SysUserService;
@@ -13,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -60,9 +60,13 @@ public class UserController {
 
     @ApiOperation(value = "管理员后台新增用户")
     @PostMapping
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "current" ,value = "当前页")
+    })
     @PreAuthorize("hasAuthority('SYS_USER_EDIT')")
-    public Result add(){
-        return Result.success();
+    public Result add(@RequestBody @Validated SysUser user){
+        boolean result=sysUserService.addUser(user);
+        return Result.success(result);
     }
 
     /**
