@@ -15,6 +15,7 @@
         <module>nos-user</module>
         <module>nos-task</module>
         <module>nos-message</module>
+        <module>nos-forum</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

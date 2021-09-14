@@ -8,13 +8,16 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.enums.ApiErrorCode;
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
+import com.weiyx.nos.costant.ErrorCodeEnum;
 import com.weiyx.nos.enums.UserTypeEnum;
 import com.weiyx.nos.feignclient.Oauth2FeignClient;
 import com.weiyx.nos.model.JwtToken;
+import com.weiyx.nos.model.NosException;
 import com.weiyx.nos.model.SysUser;
 import com.weiyx.nos.service.SysUserService;
 import com.weiyx.nos.service.UserLoginService;
 import com.weiyx.nos.vo.LoginDetailVo;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,8 +62,14 @@ public class USerLoginServiceImpl implements UserLoginService {
             SysUser user=sysUserService.getOne(userWrapper);
             username=user !=null? user.getUsername():account;
         }
+        ResponseEntity<JwtToken> responseEntity;
+        try{
+             responseEntity=oauth2FeignClient.getToken("password",username,password,"password",basicToken);
+        }catch (FeignException e){
+            log.error(e.getMessage());
+            throw new NosException(ErrorCodeEnum.INVALID_GRANT);
+        }
 
-        ResponseEntity<JwtToken> responseEntity=oauth2FeignClient.getToken("password",username,password,"password",basicToken);
         if (responseEntity.getStatusCode() != HttpStatus.OK) {
             throw new ApiException(ApiErrorCode.FAILED);
         }
